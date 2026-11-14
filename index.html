@@ -14,7 +14,7 @@
 </head>
 <body class="michroma-regular">
     <aside>
-        <h1>Synapse</h1>
+        <h1 class="brand">Synapse</h1>
 
         <nav>
             <button class="tab-button active" data-tab="home">Home</button>
@@ -24,7 +24,7 @@
             <button class="tab-button" data-tab="settings">Settings</button>
         </nav>
 
-        <p id="session-status" class="small">Not signed in</p>
+        <p id="session-status" class="status">Not signed in</p>
     </aside>
 
     <main>
@@ -46,27 +46,33 @@
                     <h3>Create a forum</h3>
                     <input id="forum-name" type="text" placeholder="Forum name" maxlength="60" required>
                     <input id="forum-desc" type="text" placeholder="Description (optional)" maxlength="300">
-                    <button type="submit">Create</button>
+                    <div class="row">
+                        <button type="submit">Create</button>
+                    </div>
                 </form>
-                <p id="forum-login-note" class="small">Sign in from the Account tab to create forums and post.</p>
+                <p id="forum-login-note" class="note">Sign in from the Account tab to create forums and post.</p>
                 <p id="forums-msg" class="msg"></p>
                 <div id="forum-list"></div>
             </div>
 
             <!-- single forum view -->
             <div id="forum-view" hidden>
-                <button id="back-to-forums" type="button">&larr; All forums</button>
-                <h3 id="forum-title"></h3>
-                <p id="forum-description" class="small"></p>
-                <button id="delete-forum" type="button" hidden>Delete forum</button>
+                <div class="forum-head">
+                    <button id="back-to-forums" type="button" class="small-btn ghost">&larr; All forums</button>
+                    <button id="delete-forum" type="button" class="small-btn danger" hidden>Delete forum</button>
+                </div>
+                <h3 id="forum-title" class="forum-title"></h3>
+                <p id="forum-description" class="note"></p>
 
                 <form id="new-post-form" class="card" hidden>
                     <h3>New post</h3>
                     <input id="post-title" type="text" placeholder="Title" maxlength="120" required>
                     <textarea id="post-body" placeholder="Write something..." maxlength="5000" rows="4" required></textarea>
-                    <button type="submit">Post</button>
+                    <div class="row">
+                        <button type="submit">Post</button>
+                    </div>
                 </form>
-                <p id="post-login-note" class="small">Sign in to post.</p>
+                <p id="post-login-note" class="note">Sign in to post and reply.</p>
                 <p id="posts-msg" class="msg"></p>
                 <div id="post-list"></div>
             </div>

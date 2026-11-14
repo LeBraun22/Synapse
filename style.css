@@ -1,136 +1,394 @@
+:root {
+  --bg: #2e182e;
+  --bg-deep: #1a101a;
+  --panel: rgba(255, 255, 255, 0.045);
+  --panel-hover: rgba(255, 255, 255, 0.075);
+  --border: rgba(255, 255, 255, 0.14);
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.62);
+  --accent: #c792ea;
+  --accent-strong: #dcb4f5;
+  --danger: #ff6b8a;
+  --ok: #9dffb0;
+  --radius: 14px;
+  --sidebar-w: 300px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .michroma-regular {
   font-family: "Michroma", sans-serif;
   font-weight: 400;
   font-style: normal;
-  font-size: 20px;
+  font-size: 14px;
+  line-height: 1.65;
 }
 
 [hidden] {
-    display: none !important;
+  display: none !important;
 }
 
 body {
-    background-color: #2e182e;
-    color: #ffffff;
-    margin: 0;
-    display: flex;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
+  color: var(--text);
+  background:
+    radial-gradient(1100px 600px at 100% 0%, #4d2754 0%, transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
 }
 
+/* ---------- Sidebar ---------- */
 aside {
-    width: 220px;
-    padding: 20px;
-    border-right: 2px solid #ffffff33;
-    box-sizing: border-box;
-    flex-shrink: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 30px 22px 24px;
+  background: var(--bg-deep);
+  border-right: 1px solid var(--border);
 }
 
-aside h1 {
-    margin-top: 0;
+.brand {
+  margin: 0 0 26px;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+  background: linear-gradient(90deg, #ffffff, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 nav {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+nav button {
+  width: 100%;
+  text-align: left;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  padding: 11px 14px;
+  font-size: 13px;
+}
+
+nav button:hover {
+  background: var(--panel-hover);
+  color: var(--text);
+}
+
+nav button.active {
+  background: var(--panel-hover);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.status {
+  margin: auto 0 0;
+  padding: 12px 14px;
+  font-size: 11px;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow-wrap: anywhere;
+}
+
+.status::before {
+  content: "\25CF";
+  margin-right: 8px;
+  color: var(--muted);
+}
+
+.status.online {
+  color: var(--text);
+}
+
+.status.online::before {
+  color: var(--ok);
+}
+
+/* ---------- Main ---------- */
 main {
-    flex: 1;
-    padding: 20px 30px;
-    min-width: 0;
+  min-width: 0;
+  padding: 40px clamp(24px, 5vw, 72px) 80px;
 }
 
+main > section {
+  max-width: 860px;
+}
+
+.tab-content {
+  animation: fade-in 0.25s ease;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+h2 {
+  margin: 0 0 22px;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+/* ---------- Buttons ---------- */
 button {
-    font-family: "Michroma", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 8px 20px;
-    border: 2px solid #ffffff;
-    border-radius: 12px;
-    background-color: #2e182e;
-    color: #ffffff;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 13px;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  background-color: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
 }
 
 button:hover {
-    background-color: #1a101a;
+  background-color: var(--panel-hover);
 }
 
-.tab-button.active {
-    background-color: #ffffff;
-    color: #2e182e;
+button:active {
+  transform: translateY(1px);
 }
 
+button[type="submit"] {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: #2e182e;
+}
+
+button[type="submit"]:hover {
+  background-color: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.small-btn {
+  padding: 6px 14px;
+  font-size: 11px;
+  border-radius: 10px;
+}
+
+.ghost {
+  border-color: var(--border);
+  color: var(--muted);
+}
+
+.ghost:hover {
+  color: var(--text);
+}
+
+.danger {
+  border-color: rgba(255, 107, 138, 0.5);
+  color: var(--danger);
+}
+
+.danger:hover {
+  background-color: rgba(255, 107, 138, 0.12);
+}
+
+/* ---------- Inputs ---------- */
 input, textarea {
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-    font-family: "Michroma", sans-serif;
-    font-size: 14px;
-    padding: 10px 12px;
-    margin: 8px 0;
-    border: 2px solid #ffffff66;
-    border-radius: 12px;
-    background-color: #1a101a;
-    color: #ffffff;
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 11px 14px;
+  font-family: "Michroma", sans-serif;
+  font-size: 13px;
+  color: var(--text);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.35);
 }
 
 input:focus, textarea:focus {
-    outline: none;
-    border-color: #ffffff;
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(199, 146, 234, 0.2);
 }
 
 textarea {
-    resize: vertical;
+  resize: vertical;
+  min-height: 80px;
 }
 
+/* ---------- Cards ---------- */
 .card {
-    border: 2px solid #ffffff44;
-    border-radius: 12px;
-    padding: 14px 18px;
-    margin: 14px 0;
-    max-width: 640px;
+  margin: 16px 0;
+  padding: 18px 22px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: background-color 0.2s ease;
 }
 
-.card h3 {
-    margin: 0 0 6px 0;
-    font-size: 17px;
+form.card {
+  max-width: 520px;
 }
 
-.card p {
-    font-size: 14px;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
+.card .body {
+  font-size: 13px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.meta, .note {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.meta strong {
+  font-weight: 400;
+  color: var(--accent-strong);
 }
 
 .row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
 }
 
-.small {
-    font-size: 12px;
-    opacity: 0.75;
+.row:empty {
+  display: none;
 }
 
 .msg {
-    font-size: 13px;
-    min-height: 1em;
+  min-height: 1.2em;
+  font-size: 12px;
 }
 
-.msg.error {
-    color: #ff8a8a;
+.msg.error { color: var(--danger); }
+.msg.ok    { color: var(--ok); }
+
+.empty {
+  color: var(--muted);
+  font-size: 12px;
 }
 
-.msg.ok {
-    color: #9dffb0;
+/* ---------- Forum view ---------- */
+.forum-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
-#account-body form {
-    max-width: 420px;
+.forum-title {
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.post {
+  border-left: 3px solid var(--accent);
+}
+
+/* ---------- Replies (threaded) ---------- */
+.replies {
+  margin: 16px 0 0 4px;
+  padding-left: 16px;
+  border-left: 2px solid var(--border);
+}
+
+.replies.flat {
+  margin-left: 0;
+  padding-left: 0;
+  border-left: none;
+}
+
+.reply {
+  margin-top: 14px;
+}
+
+.reply:first-child {
+  margin-top: 0;
+}
+
+.reply > .meta {
+  margin-bottom: 4px;
+}
+
+.reply > .body {
+  margin-bottom: 0;
+}
+
+.reply-form {
+  margin-top: 12px;
+}
+
+.reply-form textarea {
+  margin-top: 0;
+}
+
+/* ---------- Account ---------- */
+#account-body .card {
+  max-width: 460px;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 800px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    position: static;
+    height: auto;
+    padding: 18px 18px 14px;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand {
+    margin-bottom: 12px;
+  }
+
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  nav button {
+    width: auto;
+  }
+
+  .status {
+    margin-top: 10px;
+  }
+
+  main {
+    padding: 24px 18px 60px;
+  }
 }
