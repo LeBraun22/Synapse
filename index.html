@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Synapse</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Michroma&display=swap');
+    </style>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="michroma-regular">
+    <aside>
+        <h1>Synapse</h1>
+
+        <nav>
+            <button class="tab-button active" data-tab="home">Home</button>
+            <button class="tab-button" data-tab="contacts">Contacts</button>
+            <button class="tab-button" data-tab="forums">Forums</button>
+            <button class="tab-button" data-tab="account">Account</button>
+            <button class="tab-button" data-tab="settings">Settings</button>
+        </nav>
+
+        <p id="session-status" class="small">Not signed in</p>
+    </aside>
+
+    <main>
+        <section id="home" class="tab-content">
+            <h2>Home</h2>
+            <p>Welcome to Synapse.</p>
+        </section>
+
+        <section id="contacts" class="tab-content" hidden>
+            <h2>Contacts</h2>
+        </section>
+
+        <section id="forums" class="tab-content" hidden>
+            <h2>Forums</h2>
+
+            <!-- list view -->
+            <div id="forums-list-view">
+                <form id="new-forum-form" class="card" hidden>
+                    <h3>Create a forum</h3>
+                    <input id="forum-name" type="text" placeholder="Forum name" maxlength="60" required>
+                    <input id="forum-desc" type="text" placeholder="Description (optional)" maxlength="300">
+                    <button type="submit">Create</button>
+                </form>
+                <p id="forum-login-note" class="small">Sign in from the Account tab to create forums and post.</p>
+                <p id="forums-msg" class="msg"></p>
+                <div id="forum-list"></div>
+            </div>
+
+            <!-- single forum view -->
+            <div id="forum-view" hidden>
+                <button id="back-to-forums" type="button">&larr; All forums</button>
+                <h3 id="forum-title"></h3>
+                <p id="forum-description" class="small"></p>
+                <button id="delete-forum" type="button" hidden>Delete forum</button>
+
+                <form id="new-post-form" class="card" hidden>
+                    <h3>New post</h3>
+                    <input id="post-title" type="text" placeholder="Title" maxlength="120" required>
+                    <textarea id="post-body" placeholder="Write something..." maxlength="5000" rows="4" required></textarea>
+                    <button type="submit">Post</button>
+                </form>
+                <p id="post-login-note" class="small">Sign in to post.</p>
+                <p id="posts-msg" class="msg"></p>
+                <div id="post-list"></div>
+            </div>
+        </section>
+
+        <section id="account" class="tab-content" hidden>
+            <h2>Account</h2>
+            <div id="account-body"></div>
+            <p id="account-msg" class="msg"></p>
+        </section>
+
+        <section id="settings" class="tab-content" hidden>
+            <h2>Settings</h2>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+.michroma-regular {
+  font-family: "Michroma", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    background-color: #2e182e;
+    color: #ffffff;
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+}
+
+aside {
+    width: 220px;
+    padding: 20px;
+    border-right: 2px solid #ffffff33;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+aside h1 {
+    margin-top: 0;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+main {
+    flex: 1;
+    padding: 20px 30px;
+    min-width: 0;
+}
+
+button {
+    font-family: "Michroma", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 8px 20px;
+    border: 2px solid #ffffff;
+    border-radius: 12px;
+    background-color: #2e182e;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1a101a;
+}
+
+.tab-button.active {
+    background-color: #ffffff;
+    color: #2e182e;
+}
+
+input, textarea {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: "Michroma", sans-serif;
+    font-size: 14px;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 2px solid #ffffff66;
+    border-radius: 12px;
+    background-color: #1a101a;
+    color: #ffffff;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #ffffff;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.card {
+    border: 2px solid #ffffff44;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 14px 0;
+    max-width: 640px;
+}
+
+.card h3 {
+    margin: 0 0 6px 0;
+    font-size: 17px;
+}
+
+.card p {
+    font-size: 14px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.small {
+    font-size: 12px;
+    opacity: 0.75;
+}
+
+.msg {
+    font-size: 13px;
+    min-height: 1em;
+}
+
+.msg.error {
+    color: #ff8a8a;
+}
+
+.msg.ok {
+    color: #9dffb0;
+}
+
+#account-body form {
+    max-width: 420px;
+}
